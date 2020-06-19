@@ -1,6 +1,7 @@
 # Piggyvest-Calculator
 
 FV = PMT * (((1 + r/n)nt - 1) / (r/n))
+
 Formula definitions:
 
 FV = future value
