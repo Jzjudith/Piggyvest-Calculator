@@ -103,7 +103,6 @@ class HomeScreenState extends State<HomeScreen> {
                               } else {
                                 _monthsInYear = _monthsInYears[0];
                               }
-
                               setState(() {
                                 _switchValue = value;
                               });
@@ -151,21 +150,14 @@ class HomeScreenState extends State<HomeScreen> {
     int t = int.parse(_timeInYears.text);
     int n = _monthsInYear == "Year(s)" ? int.parse(_timeInYears.text) * 12  : int.parse(_timeInYears.text);
 
-
-
     FV = PPM *    ((pow((1 + r/n), n*t) - 1) / (r/n));
-
-    
+   
     _compoundedInterest = FV.toStringAsFixed(2);
-
     setState(() {
-
     });
   }
 
-
   Widget compoundedInterest(compoundedInterest) {
-
     bool canShow = false;
     String _compoundedInterest = compoundedInterest;
 
