@@ -1,12 +1,13 @@
 import "package:flutter/material.dart";
 import "dart:math";
 
+
 void main() => runApp(
   MaterialApp(
     title: 'Piggy Calculator',
     theme: ThemeData(
-      primaryColor: Colors.blueAccent,
-      accentColor: Colors.blueAccent,
+      primaryColor: Colors.blue,
+      accentColor: Colors.blue,
     ),
 
     home: HomeScreen()
@@ -80,7 +81,7 @@ class HomeScreenState extends State<HomeScreen> {
                           labelText: "Number Of Years"
                         ),
                         keyboardType: TextInputType.number,
-                      )
+                      ),
                     ),
 
                     Flexible(
@@ -91,13 +92,12 @@ class HomeScreenState extends State<HomeScreen> {
                             'Time In Years',
                             style: TextStyle(
                               fontWeight: FontWeight.bold
-                            )
+                            ),
                           ),
                           Switch(
                             value: _switchValue,
                             onChanged: (bool value) {
                               print(value);
-
                               if( value ) {
                                 _monthsInYear = _monthsInYears[1];
                               } else {
@@ -107,57 +107,57 @@ class HomeScreenState extends State<HomeScreen> {
                                 _switchValue = value;
                               });
                             }
-
-                          )
-                        ]
-                      )
-                    )
+                          ),
+                        ],
+                      ),
+                    ),
                   ],
-                )
-                
+                ),
               ),
 
               Flexible(
                 fit: FlexFit.loose,
                 child: FlatButton(
-                  onPressed: _handleCalculation,
                   child: Text("Calculate"),
-                  color: Colors.blueAccent,
-                  textColor: Colors.white,
-                  padding: EdgeInsets.only(top: 10.0, bottom: 10.0, left: 24.0, right: 24.0)
-                )
+                    onPressed: () {
+                    _handleCalculation (); },
+                    color: Colors.blueAccent,
+                    textColor: Colors.white,
+                    padding: EdgeInsets.only(top: 10.0, bottom: 10.0, left: 24.0, right: 24.0)
+                ),
               ),
 
             ],
-          )
-        )
-      )
+          ),
+        ),
+      ),
     );
   }
 
   void _handleCalculation() {
 
     //  Compounded Interest
-    //  FV = PPM * (((1 + r/n)nt - 1) / (r/n))
-    //  FV = Future value
-    //  PPM = Payment per momth
+    //  F = P * (((1 + r/n)nt - 1) / (r/n))
+    //  F = Future value
+    //  P = Payment per month
     //  r = Annual interest rate
     //  n = total number of payments or periods
 
-    double FV = 0.0;
-    int PPM = int.parse(_paymentPerMonth.text);
+    double F = 0.0;
+    int P = int.parse(_paymentPerMonth.text);
     double r = int.parse(_interestRate.text) / 12 / 100;
     int t = int.parse(_timeInYears.text);
     int n = _monthsInYear == "Year(s)" ? int.parse(_timeInYears.text) * 12  : int.parse(_timeInYears.text);
 
-    FV = PPM *    ((pow((1 + r/n), n*t) - 1) / (r/n));
-   
-    _compoundedInterest = FV.toStringAsFixed(2);
+    F = P * ((pow((1 + r/n), n*t) - 1) / (r/n));
+
+    _compoundedInterest = F.toStringAsFixed(2);
     setState(() {
+
     });
   }
 
-  Widget compoundedInterest(compoundedInterest) {
+ Widget compoundedInterest(compoundedInterest) {
     bool canShow = false;
     String _compoundedInterest = compoundedInterest;
 
@@ -177,12 +177,13 @@ class HomeScreenState extends State<HomeScreen> {
           ),
           Container(
             child: Text(_compoundedInterest,
-            style: TextStyle(
+              style: TextStyle(
               fontSize: 50.0,
               fontWeight: FontWeight.bold
-            ))
-          )
-        ]
+              ),
+            ),
+          ),
+        ],
       ) : Container()
     );
   }
