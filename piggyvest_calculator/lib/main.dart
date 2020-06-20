@@ -36,6 +36,7 @@ class HomeScreenState extends State<HomeScreen> {
     return Scaffold(
         appBar: AppBar(
             title: Text("Piggyvest Calculator"),
+            centerTitle: true,
             elevation: 0.0
 
         ),
