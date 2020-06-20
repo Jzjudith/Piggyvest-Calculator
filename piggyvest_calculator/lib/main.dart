@@ -35,8 +35,8 @@ class HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-            title: Text("Piggyvest Calculator"),
             centerTitle: true,
+            title: Text("Piggyvest Calculator"),
             elevation: 0.0
 
         ),
